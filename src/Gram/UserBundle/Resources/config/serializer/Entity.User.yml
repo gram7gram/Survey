@@ -1,0 +1,20 @@
+Gram\UserBundle\Entity\User:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups:
+                - spa_v1_completed_survey
+        firstName:
+            expose: true
+            serialized_name: firstName
+            groups:
+                - spa_v1_completed_survey
+        lastName:
+            expose: true
+            serialized_name: lastName
+            groups:
+                - spa_v1_completed_survey
+        individual:
+            groups:
+                - spa_v1_completed_survey

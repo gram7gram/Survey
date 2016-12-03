@@ -1,0 +1,8 @@
+services:
+    user.user_service:
+        class: Gram\UserBundle\Services\UserService
+        arguments: [@service_container]
+
+    user.email_service:
+        class: Gram\UserBundle\Services\EmailService
+        arguments: [@service_container]

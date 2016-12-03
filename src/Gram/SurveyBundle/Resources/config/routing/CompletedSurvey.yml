@@ -1,0 +1,4 @@
+survey_rest_completed_survey_post:
+    path: /completed_surveys
+    methods: [POST]
+    defaults: { _controller: GramSurveyBundle:CompletedSurveyREST:post }

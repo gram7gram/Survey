@@ -1,0 +1,16 @@
+survey_bundle_spa_survey:
+    resource: routing/survey.yml
+    prefix:   /spa/v1
+
+survey_bundle_spa_completed_survey:
+    resource: routing/CompletedSurvey.yml
+    prefix:   /spa/v1
+
+survey_bundle_spa_survey_statistics:
+    resource: routing/statistics.yml
+    prefix:   /spa/v1
+
+survey_bundle_survey_index:
+    path: /survey
+    methods: [GET]
+    defaults: {_controller: GramSurveyBundle:Survey:index}

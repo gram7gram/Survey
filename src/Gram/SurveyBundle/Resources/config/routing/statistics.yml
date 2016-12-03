@@ -1,0 +1,6 @@
+survey_rest_survey_statistic:
+    path: /surveys/{id}/statistics
+    methods: [GET]
+    defaults: { _controller: GramSurveyBundle:SurveyStatisticsREST:get }
+    requirements:
+        id: \d+

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('spa/dist/Survey.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div id="survey-app"></div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var SurveyRouter = {
+            GET: {
+                surveyByPromocode: '{{ path('survey_rest_survey_by_promocode_get', {'promocode': '123ASD'}) }}'.replace('123ASD', '__promo__'),
+            },
+            POST: {
+                completeSurvey: '{{ path('survey_rest_completed_survey_post') }}',
+            }
+        }
+
+        var SurveyResources = {
+            images: {
+                noSurveys: '{{ asset('assets/img/survey@190.png') }}',
+                noAccess: '{{ asset('assets/img/no-access@128.png') }}'
+            }
+        }
+    </script>
+    <script type="text/javascript"
+            src="{{ asset('spa/dist/Survey' ~ (app.environment == 'prod' ? '.min' : '') ~ '.js') }}"></script>
+
+{% endblock %}

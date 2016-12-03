@@ -1,0 +1,25 @@
+Gram\UserBundle\Entity\User:
+    type:  entity
+    table: fos_user
+    repositoryClass: Gram\UserBundle\Entity\UserRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: IDENTITY }
+    fields:
+        canSendEmail:
+            type: boolean
+            options:
+                default: 1
+    manyToMany:
+
+    oneToOne:
+        individual:
+            targetEntity: Gram\UserBundle\Entity\Individual
+            inversedBy: user
+            cascade: ["persist"]
+    oneToMany:
+
+    manyToOne:
+
+    lifecycleCallbacks: {}

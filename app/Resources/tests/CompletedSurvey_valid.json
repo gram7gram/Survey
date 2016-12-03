@@ -1,0 +1,41 @@
+{
+  "user": {
+    "email": "qq@qq.qq",
+    "individual": {
+      "contacts": {
+        "mobilePhone": "380669996666"
+      },
+      "address": {
+        "city": "qq"
+      },
+      "lastName": "qq",
+      "firstName": "qq",
+      "age": 18
+    }
+  },
+  "survey": {
+    "id": 1
+  },
+  "answers": [
+    {
+      "question": {
+        "id": 1
+      },
+      "choices": [
+        {
+          "name": "qq"
+        }
+      ]
+    },
+    {
+      "question": {
+        "id": 2
+      },
+      "choices": [
+        {
+          "id": 12
+        }
+      ]
+    }
+  ]
+}

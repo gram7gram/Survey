@@ -1,0 +1,18 @@
+Gram\UserBundle\Entity\Contacts:
+    type: entity
+    table: user_bundle_contacts
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        mobilePhone:
+            type: text
+            nullable: false
+    manyToMany:
+
+    oneToMany:
+
+    oneToOne:

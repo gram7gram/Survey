@@ -1,0 +1,18 @@
+Gram\UserBundle\Entity\Address:
+    type: entity
+    table: user_bundle_address
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        city:
+            type: text
+            nullable: false
+    manyToMany:
+
+    oneToMany:
+
+    oneToOne:

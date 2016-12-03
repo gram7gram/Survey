@@ -1,0 +1,36 @@
+Gram\UserBundle\Entity\Individual:
+    type: entity
+    table: individual
+    fields:
+        id:
+            id: true
+            type: bigint
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        firstName:
+            type: string
+            length: 128
+            fixed: false
+            nullable: true
+            column: first_name
+        lastName:
+            type: string
+            length: 128
+            fixed: false
+            nullable: true
+            column: last_name
+        age:
+            type: integer
+            nullable: false
+    manyToMany:
+
+    manyToOne:
+        contacts:
+            targetEntity: Gram\UserBundle\Entity\Contacts
+        address:
+            targetEntity: Gram\UserBundle\Entity\Address
+    oneToOne:
+        user:
+            targetEntity: Gram\UserBundle\Entity\User
+            mappedBy: individual

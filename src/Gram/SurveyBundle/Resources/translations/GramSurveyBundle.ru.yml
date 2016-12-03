@@ -1,0 +1,24 @@
+Survey history: История анкетирования
+Survey: Анкетирование
+Survey templates: Мои шаблоны
+Recipient was not found: Получатель не был найден
+Question choice was not found: Вариант ответа не был найден
+Question type was not found: Тип вопроса не был найден
+Survey not found: Анкета не найдена
+Question was not found: Вопрос не был найден
+Open survey was not found: Анкета клиента не была найдена
+Completed survey already exists: Клиент уже заполнил анкету
+Survey report command name: Анкетирование / Отчет по анкете "%NAME%"
+Survey full report command name: Анкетирование / Расширенный отчет по анкете "%NAME%"
+Survey report title: Статистика по анкете состоянием на
+Survey report respondent count: Количество опрошенных респондентов
+Survey report question answer: Вопросы/Ответы
+Survey report answer count: Количество ответов
+Survey report answer percent: Процент ответов
+Survey report respondent: Опрошенные респонденты
+Survey has recepients: Анкета в работе. Редактирование запрещено
+Question should have at least 2 options: В вопросе должно быть 2 и более варианта ответа
+Recipients were not found: Ни одного клиента не найдено
+Responent answer is not allowed in question: Добавления ответов респондентом в вопросе "%QUESTION%" не разрешено
+Client survey email title: Просим принять участие в анкетировании
+Report survey email title: [%server_hostname%] Новая анкета

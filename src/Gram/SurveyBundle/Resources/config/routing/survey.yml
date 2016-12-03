@@ -1,0 +1,11 @@
+survey_rest_survey_get:
+    path: /surveys/{id}
+    methods: [GET]
+    defaults: { _controller: GramSurveyBundle:SurveyREST:get }
+    requirements:
+        id: \d+
+
+survey_rest_survey_by_promocode_get:
+    path: /surveys/{promocode}
+    methods: [GET]
+    defaults: { _controller: GramSurveyBundle:SurveyREST:getByCode }
