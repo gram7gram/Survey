@@ -1,0 +1,9 @@
+{% extends 'emails/base.html.twig' %}
+
+{% block title %}{{ 'Report survey email title'|trans({}, 'GramSurveyBundle') }}{% endblock %}
+
+{% block html %}
+
+    <h4>{{ completedSurvey.survey.name }}</h4>
+
+{% endblock %}

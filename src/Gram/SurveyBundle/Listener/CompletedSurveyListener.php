@@ -28,11 +28,15 @@ class CompletedSurveyListener
         $trans = $this->container->get('translator');
         $temp = $this->container->get('templating');
 
+        $html = $temp->render('@GramSurvey/email/survey.html.twig', [
+            'completedSurvey' => $entity,
+        ]);
+
+        file_put_contents('/tmp/' . md5(uniqid()) . '.html', $html);
+
         $emailer->send($recipients, EmailService::DEFAULT_TEMPLATE, [
             'subject' => $trans->trans('Report survey email title', [], 'GramSurveyBundle'),
-            'html' => $temp->render('@GramSurvey/email/survey.html.twig', [
-                'completedSurvey' => $entity,
-            ]),
+            'html' => $html,
         ]);
     }
 }

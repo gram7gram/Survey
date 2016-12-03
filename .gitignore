@@ -10,7 +10,7 @@
 /.idea
 /composer.phar
 /composer.lock
-/web/cache/*
-/web/spa/dist/
-/web/spa/node_modules/
+/www/cache/*
+/www/spa/dist/
+/www/spa/node_modules/
 
