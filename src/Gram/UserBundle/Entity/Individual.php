@@ -32,7 +32,7 @@ class Individual
     /**
      * @var int
      *
-     * @@JMS\Groups({"spa_v1_completed_survey"})
+     * @JMS\Groups({"spa_v1_completed_survey"})
      */
     private $age;
 

@@ -19,7 +19,7 @@ class Question
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      *
-     * @JMS\Groups({"spa_v1_survey", "spa_v1_open_survey"})
+     * @JMS\Groups({"spa_v1_survey", "spa_v1_completed_survey"})
      */
     private $id;
 
@@ -28,7 +28,7 @@ class Question
      *
      * @ORM\Column(name="name", type="string")
      *
-     * @JMS\Groups({"spa_v1_survey", "spa_v1_completed_survey", "spa_v1_open_survey"})
+     * @JMS\Groups({"spa_v1_survey", "spa_v1_completed_survey"})
      */
     private $name;
 
@@ -37,7 +37,7 @@ class Question
      *
      * @ORM\Column(name="description", type="text", nullable=true)
      *
-     * @JMS\Groups({"spa_v1_survey", "spa_v1_completed_survey", "spa_v1_open_survey"})
+     * @JMS\Groups({"spa_v1_survey", "spa_v1_completed_survey"})
      */
     private $description;
 
@@ -46,7 +46,7 @@ class Question
      *
      * @ORM\Column(name="ordering", type="integer")
      *
-     * @JMS\Groups({"spa_v1_survey", "spa_v1_completed_survey", "spa_v1_open_survey"})
+     * @JMS\Groups({"spa_v1_survey", "spa_v1_completed_survey"})
      */
     private $order;
 
@@ -258,7 +258,7 @@ class Question
      * @JMS\VirtualProperty
      * @JMS\SerializedName("choices")
      * @JMS\Type("array")
-     * @JMS\Groups({"spa_v1_survey"})
+     * @JMS\Groups({"spa_v1_survey","spa_v1_completed_survey"})
      */
     public function getAnswerChoices()
     {

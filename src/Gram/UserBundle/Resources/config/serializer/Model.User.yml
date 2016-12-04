@@ -1,8 +1,12 @@
 FOS\UserBundle\Model\User:
   exclusion_policy: ALL
   properties:
+      id:
+          expose: true
+          groups:
+              - spa_v1_completed_survey
       email:
-          expose: true,
+          expose: true
           serialized_name: email
           groups:
-            - spa_v1_completed_survey
+              - spa_v1_completed_survey

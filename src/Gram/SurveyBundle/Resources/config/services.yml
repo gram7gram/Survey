@@ -18,9 +18,3 @@ services:
     rest.form_errors_serializer:
         class: Gram\SurveyBundle\Services\FormErrorsSerializer
         arguments: [@service_container]
-
-    survey.completed_survey_listener:
-        class: Gram\SurveyBundle\Listener\CompletedSurveyListener
-        arguments: [@service_container]
-        tags:
-            - { name: doctrine.event_listener, event: prePersist}

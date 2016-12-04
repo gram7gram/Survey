@@ -71,10 +71,14 @@ class CompletedSurveyService
             $em->flush();
 
             $em->commit();
+
+
         } catch (\Exception $e) {
             $em->rollback();
             throw $e;
         }
+
+        $this->notify($completedSurvey);
 
         return $completedSurvey;
     }
@@ -310,6 +314,26 @@ class CompletedSurveyService
         $surveyArr = json_decode($content, true);
 
         return $surveyArr;
+    }
+
+    public function notify(CompletedSurvey $entity)
+    {
+
+        $recipients = $this->container->getParameter('survey_recipients');
+        $emailer = $this->container->get('user.email_service');
+        $trans = $this->container->get('translator');
+        $temp = $this->container->get('templating');
+        $completedSurveyService = $this->container->get('survey.completed_survey_rest_service');
+
+        $survey = $completedSurveyService->serialize($entity);
+        $html = $temp->render('@GramSurvey/email/survey.html.twig', [
+            'completedSurvey' => $survey,
+        ]);
+
+        $emailer->send($recipients, EmailService::DEFAULT_TEMPLATE, [
+            'subject' => $trans->trans('Report survey email title', [], 'GramSurveyBundle'),
+            'html' => $html,
+        ]);
     }
 
 }

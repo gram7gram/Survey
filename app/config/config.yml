@@ -7,37 +7,38 @@ parameters:
     locale: ru
 
 framework:
-    secret:          "%secret%"
+    secret: "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
-    form:            ~
+    form: ~
     csrf_protection: ~
-    validation:      { enable_annotations: true }
-    #serializer:      { enable_annotations: true }
+    validation: { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale:  "%locale%"
+    default_locale:  %locale%
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
         handler_id:  ~
-    fragments:       ~
+    translator:
+        fallback: en
+    fragments: ~
     http_method_override: true
 
 twig:
-    debug:            "%kernel.debug%"
+    debug: "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
 doctrine:
     dbal:
         driver:   pdo_pgsql
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
+        host: "%database_host%"
+        port: "%database_port%"
+        dbname: "%database_name%"
+        user: "%database_user%"
         password: "%database_password%"
-        charset:  UTF8
+        charset: UTF8
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
@@ -45,12 +46,23 @@ doctrine:
 
 swiftmailer:
     transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
+    host: "%mailer_host%"
+    username: "%mailer_user%"
+    password: "%mailer_password%"
+    spool: { type: memory }
 
 fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Gram\UserBundle\Entity\User
+
+jms_serializer:
+    metadata:
+        auto_detection: true
+        directories:
+            FOSUserBundle:
+                namespace_prefix: "FOS\\UserBundle"
+                path: '@GramUserBundle/Resources/config/serializer'
+            GramUserBundle:
+                namespace_prefix: "Gram\\UserBundle"
+                path: '@GramUserBundle/Resources/config/serializer'

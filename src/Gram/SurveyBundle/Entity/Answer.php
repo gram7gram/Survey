@@ -159,7 +159,8 @@ class Answer
                 $choice = $choices->getChoice();
                 $result[] = [
                     'id' => $choice->getId(),
-                    'name' => $choice->getName()
+                    'name' => $choice->getName(),
+                    'isRespondentAnswer' => $choices->isRespondentAnswer()
                 ];
             }
         }
