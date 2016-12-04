@@ -1,10 +1,9 @@
 {% extends 'emails/base.html.twig' %}
 {% trans_default_domain 'GramSurveyBundle' %}
-{% block title %}{{ 'Report survey email title'|trans }}{% endblock %}
+
+{% block title %}{{ completedSurvey.survey.name }}{% endblock %}
 
 {% block html %}
-
-    <h3>{{ completedSurvey.survey.name }}</h3>
 
     <h4>{{ 'Pesonal information'|trans }}</h4>
     {% set individual = completedSurvey.user.individual %}
