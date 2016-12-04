@@ -83,7 +83,8 @@ class Index extends React.Component {
                                 <tr>
                                     <td><h4 className="font-40">1</h4></td>
                                     <td><h4>Ознакомиться с текстом&nbsp;
-                                        <a href="javascript:"
+                                        <a href="http://omnifarma.kiev.ua/products/smartsmajl/"
+                                           target="_blank"
                                            className="black-link">Инструкции</a>
                                         &nbsp;для добавки
                                         диетической «СмартСмайл»</h4>
