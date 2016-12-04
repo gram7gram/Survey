@@ -13,3 +13,4 @@ parameters:
     email_name: ~
     server_hostname: ~
     survey_recipients: ~
+    active_survey_promocode: ~

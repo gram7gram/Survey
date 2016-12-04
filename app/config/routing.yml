@@ -3,6 +3,11 @@ app_index:
     methods: [GET]
     defaults: {_controller: GramSurveyBundle:Survey:index}
 
+app_info:
+    path: /info
+    methods: [GET]
+    defaults: {_controller: GramSurveyBundle:Survey:info}
+
 gram_survey:
     resource: @GramSurveyBundle/Resources/config/routing.yml
     prefix: /

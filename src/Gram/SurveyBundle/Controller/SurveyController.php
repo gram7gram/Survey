@@ -14,6 +14,27 @@ class SurveyController extends Controller
      */
     public function indexAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $code = $this->container->getParameter('active_survey_promocode');
+        $survey = null;
+        if ($code) {
+            $survey = $em->getRepository('GramSurveyBundle:Survey')
+                ->findOneJoinedByPromocode($code);
+            if (!$survey) {
+                throw $this->createNotFoundException();
+            }
+        }
+        return [
+            'survey' => $survey
+        ];
+    }
+
+    /**
+     * @Template()
+     * @return array
+     */
+    public function infoAction()
+    {
         return [];
     }
 

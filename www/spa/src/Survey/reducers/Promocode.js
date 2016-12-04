@@ -3,7 +3,7 @@
 import * as Action from '../actions';
 import {combineReducers} from 'redux';
 
-const value = (previousState = null, action = {}) => {
+const value = (previousState = SurveyModel.promocode, action = {}) => {
 
     switch (action.type) {
         case Action.PROMOCODE_CHANGED:
@@ -13,7 +13,7 @@ const value = (previousState = null, action = {}) => {
     }
 }
 
-const isValid = (previousState = false, action = {}) => {
+const isValid = (previousState = true, action = {}) => {
 
     switch (action.type) {
         case Action.PROMOCODE_CHANGED:
