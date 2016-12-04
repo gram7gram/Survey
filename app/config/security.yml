@@ -1,4 +1,6 @@
 security:
+    encoders:
+        Gram\UserBundle\Entity\User: sha256
 
     providers:
         in_memory:

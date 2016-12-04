@@ -28,7 +28,8 @@
     "gedmo/doctrine-extensions": "2.3.*@dev",
     "jms/serializer-bundle": "~0.13",
     "nelmio/api-doc-bundle": "^2.13",
-    "incenteev/composer-parameter-handler": "~2.0"
+    "incenteev/composer-parameter-handler": "~2.0",
+    "tss/automailer-bundle": "dev-master"
   },
   "require-dev": {
     "sensio/generator-bundle": "~3.0",

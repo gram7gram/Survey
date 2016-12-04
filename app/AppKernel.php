@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Gram\UserBundle\GramUserBundle(),
             new Gram\SurveyBundle\GramSurveyBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new TSS\AutomailerBundle\TSSAutomailerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

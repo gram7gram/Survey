@@ -14,7 +14,7 @@ const toTop = () => {
 }
 
 const onCompleteEnter = (getState, nextState, replace)  => {
-    document.title = trans.ru.completeSurveyTitle
+    document.title = trans.ru.surveyTitle
     toTop()
 
     const store = getState();
@@ -27,7 +27,7 @@ const onCompleteEnter = (getState, nextState, replace)  => {
 }
 
 const onCompletedEnter = (getState, nextState, replace)  => {
-    document.title = trans.ru.completedSurveyTitle
+    document.title = trans.ru.surveyTitle
     toTop()
 
     const store = getState();
@@ -45,6 +45,7 @@ const onNoAccessEnter = (store, nextState, replace)  => {
 }
 
 const onSurveyEnter = (store, nextState, replace)  => {
+    document.title = trans.ru.homepageTitle
     toTop()
 }
 

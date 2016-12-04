@@ -49,7 +49,11 @@ swiftmailer:
     host: "%mailer_host%"
     username: "%mailer_user%"
     password: "%mailer_password%"
-    spool: { type: memory }
+    spool:
+        type: automailer
+
+tss_automailer:
+    beanstalk: true
 
 fos_user:
     db_driver: orm
