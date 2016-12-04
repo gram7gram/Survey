@@ -17,7 +17,7 @@ class Version20161204110039 extends AbstractMigration implements ContainerAwareI
     {
         $code = $this->container->getParameter('active_survey_promocode');
 
-        $this->addSql('INSERT INTO survey_bundle_question_type (name, key) VALUES
+        $this->addSql('INSERT INTO survey_bundle_question_type (name, `key`) VALUES
             (\'Несколько вариантов ответа\', \'' . QuestionType::MULTIPLE_OPTIONS . '\'),
             (\'Один вариант ответа\', \'' . QuestionType::SIGLE_OPTION . '\')');
 
@@ -27,13 +27,13 @@ class Version20161204110039 extends AbstractMigration implements ContainerAwareI
         $this->addSql('INSERT INTO survey_bundle_question (type_id, survey_id, name, ordering, is_responent_answer_allowed) VALUES
               ((SELECT id
                 FROM survey_bundle_question_type
-                WHERE key = \'' . QuestionType::SIGLE_OPTION . '\'),
+                WHERE `key` = \'' . QuestionType::SIGLE_OPTION . '\'),
                (SELECT id
                 FROM survey_bundle_survey
                 WHERE promocode = \'' . $code . '\'), \'Кто планирует использовать образец?\', 1, TRUE),
               ((SELECT id
                 FROM survey_bundle_question_type
-                WHERE key = \'' . QuestionType::SIGLE_OPTION . '\'),
+                WHERE `key` = \'' . QuestionType::SIGLE_OPTION . '\'),
                (SELECT id
                 FROM survey_bundle_survey
                 WHERE promocode = \'' . $code . '\'), \'Источник информации о Программе\', 2, TRUE)
