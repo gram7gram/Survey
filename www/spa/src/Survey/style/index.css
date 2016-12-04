@@ -67,3 +67,25 @@ ul.pagination {
 .intl-tel-input {
     width: 100%
 }
+
+.font-40 {
+    font-size:40pt
+}
+
+.black-link {
+    color:black;text-decoration:underline
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn-participate {
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+.answer-choice input[type="checkbox"],
+.answer-choice input[type="radio"] {
+    margin-top: 10px
+}

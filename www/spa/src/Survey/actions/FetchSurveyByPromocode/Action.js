@@ -22,10 +22,10 @@ export default (promocode = false) => dispatch => {
         error: (error) => {
             switch (error.status) {
                 case 403:
-                    dispatch(unauthorized(promocode, error.responseJSON));
+                    dispatch(unauthorized(error.status, error.responseJSON));
                     break;
                 default:
-                    dispatch(fetchFailure(promocode, error.responseJSON));
+                    dispatch(fetchFailure(error.status, error.responseJSON));
             }
         }
     })

@@ -5,61 +5,200 @@
 {% block meta %}
     {{ parent() }}
     <meta name="description" content="{{ 'Homepage'|trans({}, 'messages') }}"/>
-    <meta name="keywords" content="Смартсмайл,купить от стресса,отзывы при стрессе,безопасные от стресса,натуральные против стресса,растительные от стресса,5-НТР,триптофан,окситриптан,депрессия,депресія,стрес,стресс,тривожність,тревожность,роздратованість,раздражительность,переїдання,нічний апетит,гриффония,грифонія,нообут,фенибут,бифрен,кваттрекс,кватрекс,фенібут,бифрен,біфрен, адаптол,афобазол,глицисед,глицин,гліцин,гліцисед,ново-пассит,персен,ново-пасит,ноофен,нотта,седістрес"/>
-{% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('spa/dist/Survey.css') }}">
+    <meta name="keywords"
+          content="Смартсмайл,купить от стресса,отзывы при стрессе,безопасные от стресса,натуральные против стресса,растительные от стресса,5-НТР,триптофан,окситриптан,депрессия,депресія,стрес,стресс,тривожність,тревожность,роздратованість,раздражительность,переїдання,нічний апетит,гриффония,грифонія,нообут,фенибут,бифрен,кваттрекс,кватрекс,фенібут,бифрен,біфрен, адаптол,афобазол,глицисед,глицин,гліцин,гліцисед,ново-пассит,персен,ново-пасит,ноофен,нотта,седістрес"/>
 {% endblock %}
 
 {% block body %}
-    <div style="display: none">
-        Грусть или подавленность?
-        Привычка заедать стресс?
-        Не покидает чувство тревоги?
-        Начальник слишком строг?
-        Такие наши состояния, по своей природе, тесно связаны с дефицитом серотонина.
-        Причины дефицита серотонина
-        несбалансированное питание (много кофеина, мало белков, дефицит витаминов группы В, магния)
-        хронический стресс, эмоциональная и умственная перегрузка
-        длительное нахождение в закрытых помещениях (недостаток солнечного света)
-        Нужна помощь?
-        Используйте СмартСмайл
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="row">
+                <div class="col-md-12 marketing-container">
+                    <h3>Грусть или подавленность?</h3>
+                </div>
+                <div class="col-md-12 image-container">
+                    <img src="{{ asset('assets/img/A3@640.jpg') }}" class="img-responsive" alt=""
+                         style="margin: 0 auto;display: block;">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="row">
+                <div class="col-md-12 marketing-container">
+                    <h3>Привычка заедать стресс?</h3>
+                </div>
+                <div class="col-md-12 image-container">
+                    <img src="{{ asset('assets/img/A5@640.jpg') }}" class="img-responsive" alt=""
+                         style="margin: 0 auto;display: block;">
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="survey-app"></div>
-{% endblock %}
 
-{% block javascripts %}
-    <script>
-        var SurveyRouter = {
-            GET: {
-                surveyByPromocode: '{{ path('survey_rest_survey_by_promocode_get', {'promocode': '123ASD'}) }}'.replace('123ASD', '__promo__'),
-                info: '{{ path('app_info') }}',
-            },
-            POST: {
-                completeSurvey: '{{ path('survey_rest_completed_survey_post') }}',
-            }
-        }
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" green bar"></div>
+        </div>
+    </div>
 
-        var SurveyModel = {
-            promocode: '{{ survey ? survey.promocode : '' }}'
-        }
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="row">
+                <div class="col-md-12 marketing-container">
+                    <h3>Не покидает чувство тревоги?</h3>
+                </div>
+                <div class="col-md-12 image-container">
+                    <img src="{{ asset('assets/img/A8@640.jpg') }}" class="img-responsive" alt=""
+                         style="margin: 0 auto;display: block;">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="row">
+                <div class="col-md-12 marketing-container">
+                    <h3>Начальник слишком строг?</h3>
+                </div>
+                <div class="col-md-12 image-container">
+                    <img src="{{ asset('assets/img/A4@640.jpg') }}" class="img-responsive" alt=""
+                         style="margin: 0 auto;display: block;">
+                </div>
+            </div>
+        </div>
+    </div>
 
-        var SurveyResources = {
-            images: {
-                noSurveys: '{{ asset('assets/img/survey@190.png') }}',
-                noAccess: '{{ asset('assets/img/no-access@128.png') }}',
-                A2: '{{ asset('assets/img/A2@512.png') }}',
-                A3: '{{ asset('assets/img/A3@640.jpg') }}',
-                A4: '{{ asset('assets/img/A4@640.jpg') }}',
-                A5: '{{ asset('assets/img/A5@640.jpg') }}',
-                A6: '{{ asset('assets/img/A6@800.jpg') }}',
-                A8: '{{ asset('assets/img/A8@640.jpg') }}',
-            }
-        }
-    </script>
-    <script type="text/javascript"
-            src="{{ asset('spa/dist/Survey' ~ (app.environment == 'prod' ? '.min' : '') ~ '.js') }}"></script>
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" green bar"></div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 marketing-container">
+                    <h2 style="width: 300px;margin: 50px auto 0 auto;">Такие
+                        наши состояния,
+                        по своей
+                        природе,
+                        тесно связаны
+                        с дефицитом
+                        серотонина.
+                    </h2>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 image-container">
+                    <img src="{{ asset('assets/img/A2@512.png') }}" class="img-responsive" alt=""
+                         style="margin: 10px auto 0 auto;display: block;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" green bar"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+                <div class="col-md-12 marketing-container">
+                    <h2>Причины дефицита серотонина</h2>
+
+                    <div class="container-fluid" style="max-width:500px">
+
+                        <div class="row">
+                            <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                                <i class="glyphicon glyphicon-heart-empty"
+                                   style="font-size: 24pt;margin-top: 43px;"></i>
+                            </div>
+                            <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                                <h3>несбалансированное питание
+                                    (много кофеина, мало белков,
+                                    дефицит витаминов группы В, магния)
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                                <i class="glyphicon glyphicon-flash" style="font-size: 24pt;margin-top: 26px;"></i>
+                            </div>
+                            <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                                <h3>хронический стресс,
+                                    эмоциональная и умственная
+                                    перегрузка
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                                <i class="glyphicon glyphicon-home" style="font-size: 24pt;margin-top: 43px;"></i>
+                            </div>
+                            <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                                <h3>длительное нахождение
+                                    в закрытых помещениях
+                                    (недостаток солнечного света)
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" green bar"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                    <h1>Нужна помощь?</h1>
+
+                    <h2>Используйте</h2>
+                </div>
+                <div class="col-md-12 image-container" style="margin-bottom:15px">
+                    <img src="{{ asset('assets/img/A6@800.jpg') }}" class="img-responsive" alt=""
+                         style="margin: 10px auto 0 auto;display: block;max-height:70px">
+                </div>
+
+                <div class="container-fluid" style="max-width:400px">
+                    <div class="row">
+                        <div class="col-md-12" style="margin-bottom:15px" id="survey-app">
+                            <a href="{{ path('app_info') }}"
+                               class="btn btn-block btn-lg btn-primary">
+                                Получить<br/>
+                                СМАРТСМАЙЛ (5-НТР)<br/>
+                                БЕСПЛАТНО
+                            </a>
+                        </div>
+
+                        <div class="col-md-12" style="margin-bottom:15px">
+                            <a href="http://omnifarma.kiev.ua/shop/antidepressanty/smartsmile/"
+                               class="btn btn-block btn-lg btn-info">
+                                Приобрести <br/>
+                                СМАРТСМАЙЛ (5-НТР)
+                            </a>
+                        </div>
+
+                        <div class="col-md-12" style="margin-bottom:15px">
+                            <a href="http://omnifarma.kiev.ua/products/smartsmajl/"
+                               class="btn btn-block btn-lg btn-default">
+                                Узнать больше о<br/>
+                                СМАРТСМАЙЛ (5-НТР)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

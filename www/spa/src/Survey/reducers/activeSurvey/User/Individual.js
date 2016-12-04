@@ -31,7 +31,7 @@ const firstName = (previousState = null, action = {}) => {
     }
 }
 
-const age = (previousState = 18, action = {}) => {
+const age = (previousState = null, action = {}) => {
     switch (action.type) {
         case Actions.INDIVIDUAL_CHANGED:
             let change = action.payload.age

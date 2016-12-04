@@ -4,14 +4,18 @@ import {Col,Row,Button,FormControl,FormGroup} from 'react-bootstrap'
 import Spinner from 'react-spinner';
 import { connect } from 'react-redux';
 
-import SDSurveyTranslator from '../../../translator'
+import trans from '../../../translator'
 import promocodeChanged from '../../../actions/PromocodeChanged/Action'
 import fetchSurveyByPromocode from '../../../actions/FetchSurveyByPromocode/Action'
+import toggleRulesAction from '../../../actions/ToggleRules/Action'
+import toggleAcceptRules from '../../../actions/ToggleAcceptRules/Action'
 
 class Index extends React.Component {
 
     constructor() {
         super();
+        this.acceptRules = this.acceptRules.bind(this)
+        this.toggleRules = this.toggleRules.bind(this)
         this.setPromocode = this.setPromocode.bind(this)
         this.openSurvey = this.openSurvey.bind(this)
     }
@@ -33,224 +37,158 @@ class Index extends React.Component {
         this.props.dispatch(fetchSurveyByPromocode(this.props.Promocode.value))
     }
 
+    toggleRules() {
+        this.props.dispatch(toggleRulesAction(!this.props.ActiveSurvey.canShowRules))
+    }
+
+    acceptRules(e) {
+        this.props.dispatch(toggleAcceptRules(e.target.checked))
+    }
+
     render() {
         const isLoading = this.props.ActiveSurvey.isLoading;
+        const areRulesAccepted = this.props.ActiveSurvey.areRulesAccepted;
+        const canStart = this.props.Promocode.isValid && areRulesAccepted
         return (
             <div className="row">
                 <div className="col-md-12">
                     <div className="row">
-                        <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <div className="row">
-                                <div className="col-md-12 marketing-container">
-                                    <h3>Грусть или подавленность?</h3>
-                                </div>
-                                <div className="col-md-12 image-container">
-                                    <img src={SurveyResources.images.A3} className="img-responsive" alt=""
-                                         style={{margin: '0 auto',display: 'block'}}/>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <div className="row">
-                                <div className="col-md-12 marketing-container">
-                                    <h3>Привычка заедать стресс?</h3>
-                                </div>
-                                <div className="col-md-12 image-container">
-                                    <img src={SurveyResources.images.A5} className="img-responsive"
-                                         alt=""
-                                         style={{margin: '0 auto',display: 'block'}}/>
-                                </div>
-                            </div>
+                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                            <h1 className="bold">СмартСмайл</h1>
+
+                            <h2 className="bold">помогает победить стресс</h2>
+
+                            <h5>(ознакомительная программа)</h5>
+
+                            <h4>Если Вы ищете для себя или своих близких</h4>
+                            <h4>эффективное средство на натуральной основе</h4>
+                            <h4>с целью повышения стрессоустойчивости,
+                                снижения тревожности, снятия состояния угнетенности,
+                                устранения последствий стресса
+                            </h4>
+
+                            <h3 className="bold">Вы можете воспользоваться представленным здесь предложением</h3>
+
+                            <table className="rules">
+                                <tbody>
+                                <tr>
+                                    <td><h4 className="font-40">1</h4></td>
+                                    <td><h4>Ознакомиться с текстом Инструкции для добавки диетической «СмартСмайл»</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><h4 className="font-40">2</h4></td>
+                                    <td><h4>Ознакомиться с&nbsp;
+                                        <a href="javascript:"
+                                           className="black-link"
+                                           onClick={this.toggleRules}>Правилами ознакомительной
+                                            Программы</a>
+                                    </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><h4 className="font-40">3</h4></td>
+                                    <td><h4>Оформить электронную заявку на получение
+                                        ознакомительного образца</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><h4 className="font-40">4</h4></td>
+                                    <td><h4>Получить подтверждение регистрации</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><h4 className="font-40">5</h4></td>
+                                    <td><h4>Получить 1 ознакомительный образец добавки диетической
+                                        «СмартСмайл 20 капсул по 100 мг»</h4>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <img src={SurveyResources.images.A7}
+                                 className="img-responsive"
+                                 alt="SmartSmile упаковка"
+                                 style={{margin: '0 auto',maxHeight: '300px'}}/>
+
                         </div>
                     </div>
 
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className=" green bar"></div>
-                        </div>
-                    </div>
+                    <Row>
 
-                    <div className="row">
-                        <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <div className="row">
-                                <div className="col-md-12 marketing-container">
-                                    <h3>Не покидает чувство тревоги?</h3>
-                                </div>
-                                <div className="col-md-12 image-container">
-                                    <img src={SurveyResources.images.A8} className="img-responsive"
-                                         alt=""
-                                         style={{margin: '0 auto',display: 'block'}}/>
-                                </div>
-                            </div>
+                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"
+                             style={{maginTop: '30px'}}>
+                            <input
+                                type="checkbox"
+                                value={areRulesAccepted ? "on" : "off"}
+                                checked={areRulesAccepted}
+                                onChange={this.acceptRules}
+                                />
+                            Настоящим подтверждаю, что я ознакомился с&nbsp;
+                            <a href="javascript:" onClick={this.toggleRules}>Правилами ознакомительной Программы</a>.
                         </div>
-                        <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <div className="row">
-                                <div className="col-md-12 marketing-container">
-                                    <h3>Начальник слишком строг?</h3>
-                                </div>
-                                <div className="col-md-12 image-container">
-                                    <img src={SurveyResources.images.A4}
-                                         className="img-responsive"
-                                         style={{margin: '0 auto',display: 'block'}}
-                                         alt=""/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className=" green bar"></div>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div className="row">
-                                <div
-                                    className="col-xs-12 col-sm-6 col-md-6 col-lg-6 marketing-container">
-                                    <h2 style={{width: '300px', margin: '50px auto 0 auto'}}>Такие
-                                        наши состояния,
-                                        по своей
-                                        природе,
-                                        тесно связаны
-                                        с дефицитом
-                                        серотонина.
-                                    </h2>
-                                </div>
-                                <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 image-container">
-                                    <img src={SurveyResources.images.A2}
-                                         className="img-responsive"
-                                         style={{margin: '10px auto 0 auto',display: 'block'}}
-                                         alt=""/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className=" green bar"></div>
-                        </div>
-                    </div>
+                    </Row>
 
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div className="row">
-                                <div className="col-md-12 marketing-container">
-                                    <h2>Причины дефицита серотонина</h2>
 
-                                    <div className="container-fluid" style={{maxWidth: '500px'}}>
-
-                                        <div className=" row">
-                                            <div className=" col-xs-2 col-sm-1 col-md-1 col-lg-1">
-                                                <i className=" glyphicon glyphicon-heart-empty"
-                                                   style={{fontSize: '24pt',marginTop: '43px'}}/>
-                                            </div>
-                                            <div
-                                                className=" col-xs-10 col-sm-11 col-md-11 col-lg-11">
-                                                <h3>несбалансированное питание
-                                                    (много кофеина, мало белков,
-                                                    дефицит витаминов группы В, магния)
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                        <div className=" row">
-                                            <div className=" col-xs-2 col-sm-1 col-md-1 col-lg-1">
-                                                <i className=" glyphicon glyphicon-flash"
-                                                   style={{fontSize: '24pt',marginTop: '26px'}}/>
-                                            </div>
-                                            <div
-                                                className=" col-xs-10 col-sm-11 col-md-11 col-lg-11">
-                                                <h3>хронический стресс,
-                                                    эмоциональная и умственная
-                                                    перегрузка
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                        <div className=" row">
-                                            <div className=" col-xs-2 col-sm-1 col-md-1 col-lg-1">
-                                                <i className=" glyphicon glyphicon-home"
-                                                   style={{fontSize: '24pt',marginTop: '43px'}}/>
-                                            </div>
-                                            <div
-                                                className="col-xs-10 col-sm-11 col-md-11 col-lg-11">
-                                                <h3>длительное нахождение
-                                                    в закрытых помещениях
-                                                    (недостаток солнечного света)
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {this.renderRules()}
                         </div>
-                    </div >
+                    </div>
 
                     <div className="row">
-                        <div className="col-md-12">
-                            <div className=" green bar"></div>
+                        <div className="col-md-12 text-center">
+
+                            {
+                                this.props.ActiveSurvey.isNotFound
+                                    ? <h4 style={{color:'red'}}>Анкета не найдена</h4>
+                                    : <a href="javascript:"
+                                         className="btn btn-block btn-lg btn-participate btn-primary"
+                                         onClick={this.openSurvey}
+                                         disabled={!canStart}>
+
+                                    {isLoading ? <Spinner/>
+                                        : <span>Принять участие</span>}
+
+                                </a>
+                            }
+
                         </div>
                     </div>
 
-                    < div
-                        className="row">
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div className="row">
-                                <div className="col-md-12" style={{textAlign:'center'}}>
-                                    <h1>Нужна помощь?</h1>
-
-                                    <h2>Используйте</h2>
-                                </div>
-                                <div className="col-md-12 image-container"
-                                     style={{marginBottom:'15px'}}>
-                                    <img src={SurveyResources.images.A6}
-                                         className="img-responsive" alt=""
-                                         style={{margin:'10px auto 0 auto', display: 'block', maxHeight: '70px'}}
-                                        />
-                                </div>
-
-                                <div className="container-fluid" style={{maxWidth:'400px'}}>
-                                    <div className="row">
-                                        <div className="col-md-12" style={{marginBottom:'15px'}}>
-                                            <a href="javascript:"
-                                               className="btn btn-block btn-lg btn-primary"
-                                               onClick={this.openSurvey}
-                                               disabled={!this.props.Promocode.isValid}>
-
-                                                {isLoading ? <Spinner/>
-                                                    : <span>Получить<br/>
-                                                        СМАРТСМАЙЛ (5-НТР)<br/>
-                                                        БЕСПЛАТНО</span>}
-
-                                            </a>
-                                        </div>
-
-                                        <div className="col-md-12" style={{marginBottom:'15px'}}>
-                                            <a href="http://omnifarma.kiev.ua/shop/antidepressanty/smartsmile/"
-                                               className="btn btn-block btn-lg btn-info">
-                                                Приобрести <br/>
-                                                СМАРТСМАЙЛ (5-НТР)
-                                            </a>
-                                        </div>
-
-                                        <div className="col-md-12" style={{marginBottom:'15px'}}>
-                                            <a href="http://omnifarma.kiev.ua/products/smartsmajl/"
-                                               className="btn btn-block btn-lg btn-default">
-                                                Узнать больше о<br/>
-                                                СМАРТСМАЙЛ (5-НТР)
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         )
+    }
+
+
+    renderRules() {
+        if (!this.props.ActiveSurvey.canShowRules) {
+            return null
+        }
+
+        return <div>
+            <div className="rules">
+                <small>
+                    <p>{trans.ru.surveyRuleHeader}</p>
+                    <ul>
+                        {trans.ru.surveyRuleCondotions.map((condition, i) =>
+                                <li key={i}>{condition}</li>
+                        )}
+                    </ul>
+                </small>
+            </div>
+            <div className="rules">
+                <p><strong>Внимание!
+                    В случае, если ознакомительный образец будет Вам полезен, мы готовы
+                    предоставить Вам ещё 1 (одну) полную ознакомительную упаковку «СмартСмайл
+                    20 капсул по 100 мг». Условие для ее получения – отправка Вами краткого отзыва
+                    на электронную почту&nbsp;
+                    <a className="black-link"
+                       href="mailto:omnifarma-kiev@mail.ua">omnifarma-kiev@mail.ua</a>.</strong>
+                </p>
+            </div>
+        </div>
     }
 }
 

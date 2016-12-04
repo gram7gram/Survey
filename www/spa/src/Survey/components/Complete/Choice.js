@@ -61,8 +61,6 @@ export default class Choice extends React.Component {
 
     renderName() {
         const choice = this.getChoice();
-        const question = this.getQuestion();
-        const name = 'question-' + question.cid + '-choice';
         if (this.props.isEditable) {
             return <FormControl
                 type="text"
@@ -70,7 +68,7 @@ export default class Choice extends React.Component {
                 onChange={this.setName}
                 placeholder={trans.ru.other}/>
         }
-        return <h4><label htmlFor={name}>{choice.name}</label></h4>
+        return <h4>{choice.name}</h4>
     }
 
     render() {
@@ -81,7 +79,7 @@ export default class Choice extends React.Component {
         const answers = this.getQuestionsAnswers().choices || {};
 
         return (
-            <Row>
+            <div className="row answer-choice">
                 <Col xs={1} sm={1} md={1} lg={1}>
                     {
                         isMultiple
@@ -102,7 +100,7 @@ export default class Choice extends React.Component {
                 <Col xs={11} sm={11} md={11} lg={11}>
                     {this.renderName()}
                 </Col>
-            </Row>
+            </div>
         )
     }
 }

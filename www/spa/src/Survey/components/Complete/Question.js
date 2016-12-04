@@ -39,7 +39,7 @@ export default class Question extends React.Component {
         return (
             <div className="panel panel-info">
                 <div className="panel-heading">
-                    <div className="panel-title">{question.name}</div>
+                    <div className="panel-title bold">{question.name}</div>
                 </div>
                 <div className="panel-body">
                     <div className="container-fluid">

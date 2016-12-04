@@ -75,6 +75,15 @@ const isLoading = (previousState = false, action = {}) => {
     }
 }
 
+const isNotFound = (previousState = false, action = {}) => {
+    switch (action.type) {
+        case Action.FETCH_SURVEY_BY_PROMOCODE_FAILURE:
+            return action.payload.params === 404;
+        default:
+            return previousState;
+    }
+}
+
 const isFound = (previousState = false, action = {}) => {
     switch (action.type) {
         case Action.FETCH_SURVEY_BY_PROMOCODE_FAILURE:
@@ -222,6 +231,7 @@ export default combineReducers({
     questions,
     canValidate,
     areRulesAccepted,
+    isNotFound,
     isFound,
     isSaving,
     isSaved,

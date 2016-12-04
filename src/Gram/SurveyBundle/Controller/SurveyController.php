@@ -14,6 +14,15 @@ class SurveyController extends Controller
      */
     public function indexAction()
     {
+        return [];
+    }
+
+    /**
+     * @Template()
+     * @return array
+     */
+    public function infoAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $code = $this->container->getParameter('active_survey_promocode');
         $survey = null;
@@ -27,15 +36,6 @@ class SurveyController extends Controller
         return [
             'survey' => $survey
         ];
-    }
-
-    /**
-     * @Template()
-     * @return array
-     */
-    public function infoAction()
-    {
-        return [];
     }
 
 }

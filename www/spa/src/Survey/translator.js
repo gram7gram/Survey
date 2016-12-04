@@ -67,7 +67,7 @@ export default {
         total: 'Всего',
         totalLeft: 'Осталось',
         complete: 'Начать',
-        submitCompletedSurvey: 'Завершить',
+        submitCompletedSurvey: 'Отправить',
         clientCompletedSurvey: '%FULLNAME%, спасибо! Ваша заявка принята',
         clientCompletedSurveyFooter: '<p>Ждите подтверждения о внесении в Реестр Участников в течение 48 часов на указанный Вами\
             адрес электронной почты.</p>\

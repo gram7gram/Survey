@@ -14,8 +14,6 @@ import nextQuestion from '../../actions/Client/NextQuestion/Action'
 import lastQuestion from '../../actions/Client/LastQuestion/Action'
 import answerQuestion from '../../actions/Client/AnswerQuestion/Action'
 import completeSurvey from '../../actions/Client/CompleteSurvey/Action'
-import toggleRulesAction from '../../actions/ToggleRules/Action'
-import toggleAcceptRules from '../../actions/ToggleAcceptRules/Action'
 import individualChanged from '../../actions/IndividualChanged/Action'
 import userChanged from '../../actions/UserChanged/Action'
 import contactsChanged from '../../actions/ContactsChanged/Action'
@@ -26,8 +24,6 @@ export default class Survey extends React.Component {
 
     constructor() {
         super();
-        this.acceptRules = this.acceptRules.bind(this)
-        this.toggleRules = this.toggleRules.bind(this)
         this.getSurvey = this.getSurvey.bind(this)
         this.getActiveSurvey = this.getActiveSurvey.bind(this)
         this.submitSurvey = this.submitSurvey.bind(this)
@@ -74,14 +70,6 @@ export default class Survey extends React.Component {
         const orders = this.props.ActiveSurvey.questionOrder;
         const cid = orders[this.props.ActiveSurvey.currentQuestionIndex]
         return this.props.ActiveSurvey.questions[cid];
-    }
-
-    toggleRules() {
-        this.props.dispatch(toggleRulesAction(!this.props.ActiveSurvey.canShowRules))
-    }
-
-    acceptRules(e) {
-        this.props.dispatch(toggleAcceptRules(e.target.checked))
     }
 
     setFirstName(e) {
@@ -168,32 +156,14 @@ export default class Survey extends React.Component {
         return (
             <div>
                 <Row>
-                    <Col md={12}>
+                    <div className="col-md-12 text-center">
                         <h2>{survey.name}</h2>
 
                         <p>{survey.description}</p>
-                    </Col>
+                    </div>
                     <Col md={12}>
                         {this.renderGlobalErrors()}
                         {this.props.ActiveSurvey.isSaving ? <Spinner/> : null}
-                    </Col>
-                </Row>
-                <Row>
-
-                    <Col md={12}>
-                        <input
-                            type="checkbox"
-                            value={areRulesAccepted ? "on" : "off"}
-                            checked={areRulesAccepted}
-                            onChange={this.acceptRules}
-                            />
-                        Настоящим подтверждаю, что я ознакомился с&nbsp;
-                        <a href="javascript:" onClick={this.toggleRules}>Правилами ознакомительной Программы</a>.
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md={12}>
-                        {this.renderRules()}
                     </Col>
                 </Row>
                 <Row>
@@ -208,7 +178,7 @@ export default class Survey extends React.Component {
                             <Col md={12}>
                                 <div className="panel panel-info">
                                     <div className="panel-heading">
-                                        <div className="panel-title">Персональная информация</div>
+                                        <div className="panel-title bold">Персональная информация</div>
                                     </div>
                                     <div className="panel-body">
                                         <div className="container-fluid">
@@ -219,6 +189,7 @@ export default class Survey extends React.Component {
                                                         <label htmlFor="">Имя</label>
                                                         <FormControl
                                                             type="text"
+                                                            placeholder="Введите имя"
                                                             value={user.individual.firstName || ''}
                                                             onChange={this.setFirstName}/>
                                                         {validator.errors.firstName
@@ -233,6 +204,7 @@ export default class Survey extends React.Component {
                                                         <label htmlFor="">Фамилия</label>
                                                         <FormControl
                                                             type="text"
+                                                            placeholder="Введите фамилию"
                                                             value={user.individual.lastName || ''}
                                                             onChange={this.setLastName}/>
                                                         {validator.errors.lastName
@@ -247,6 +219,7 @@ export default class Survey extends React.Component {
                                                         <label htmlFor="">Возраст, полных лет</label>
                                                         <FormControl
                                                             type="text"
+                                                            placeholder="Введите количество"
                                                             value={user.individual.age || ''}
                                                             onChange={this.setAge}/>
                                                         {validator.errors.age
@@ -259,6 +232,7 @@ export default class Survey extends React.Component {
                                                         <label htmlFor="">Город проживания:</label>
                                                         <FormControl
                                                             type="text"
+                                                            placeholder="Введите название"
                                                             value={address && address.city ? address.city : ''}
                                                             onChange={this.setCity}/>
                                                         {validator.errors.city
@@ -293,6 +267,7 @@ export default class Survey extends React.Component {
                                                         <label htmlFor="">Контактный e-mail</label>
                                                         <FormControl
                                                             type="text"
+                                                            placeholder="Введите название"
                                                             value={email || ''}
                                                             onChange={this.setEmail}/>
                                                         {validator.errors.email
@@ -311,38 +286,21 @@ export default class Survey extends React.Component {
                         {this.renderContent()}
                     </Col>
 
-                    <Col md={12} style={{textAlign: 'right'}}>
+                    <div className="col-md-12 text-center">
                         <FormGroup>
                             {
                                 this.props.ActiveSurvey.isSaving
                                     ? <Spinner/>
-                                    : <Button
-                                    bsStyle="primary"
-                                    disabled={!(areRulesAccepted && isValid)}
-                                    onClick={this.submitSurvey}>{trans.ru.submitCompletedSurvey}</Button>
+                                    : <a href="javascript:"
+                                         className="btn btn-block btn-lg btn-primary btn-participate"
+                                         disabled={!(areRulesAccepted && isValid)}
+                                         onClick={this.submitSurvey}>{trans.ru.submitCompletedSurvey}</a>
                             }
                         </FormGroup>
-                    </Col>
+                    </div>
                 </Row>
             </div>
         );
-    }
-
-    renderRules() {
-        if (!this.props.ActiveSurvey.canShowRules) {
-            return null
-        }
-
-        return <div className="rules">
-            <small>
-                <p>{trans.ru.surveyRuleHeader}</p>
-                <ul>
-                    {trans.ru.surveyRuleCondotions.map((condition, i) =>
-                            <li key={i}>{condition}</li>
-                    )}
-                </ul>
-            </small>
-        </div>
     }
 
 }
