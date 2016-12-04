@@ -39,7 +39,7 @@ class EmailService
 
             $message = \Swift_Message::newInstance();
             $message->setFrom($config['from']);
-            $message->setBody($config['subject']);
+            $message->setSubject($config['subject']);
             $message->setBody($config['html'], 'text/html');
             $message->setTo($email);
 
