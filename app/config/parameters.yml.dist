@@ -1,15 +1,16 @@
 parameters:
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: symfony
+    database_user: root
     database_password: ~
     database_driver: ~
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_port: 25
+    mailer_user: ~
+    mailer_password: ~
+    secret: ThisTokenIsNotSoSecretChangeIt
     email_from: ~
     email_name: ~
     server_hostname: ~
