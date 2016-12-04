@@ -36,7 +36,7 @@ const age = (previousState = 18, action = {}) => {
         case Actions.INDIVIDUAL_CHANGED:
             let change = action.payload.age
             if (change !== undefined) {
-                return parseInt(change.replace(/[^0-9]/, ''))
+                return parseInt(change)
             }
             return previousState;
         default:

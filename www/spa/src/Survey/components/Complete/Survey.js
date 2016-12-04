@@ -213,7 +213,7 @@ export default class Survey extends React.Component {
                                     <div className="panel-body">
                                         <div className="container-fluid">
                                             <Row>
-                                                <Col xs={12} sm={6} md={6} lg={3}>
+                                                <Col xs={12} sm={6} md={6} lg={6}>
                                                     <FormGroup
                                                         validationState={validator.errors.firstName ? 'error' : null}>
                                                         <label htmlFor="">Имя</label>
@@ -227,7 +227,7 @@ export default class Survey extends React.Component {
                                                             : null}
                                                     </FormGroup>
                                                 </Col>
-                                                <Col xs={12} sm={6} md={6} lg={3}>
+                                                <Col xs={12} sm={6} md={6} lg={6}>
                                                     <FormGroup
                                                         validationState={validator.errors.lastName ? 'error' : null}>
                                                         <label htmlFor="">Фамилия</label>
@@ -242,7 +242,7 @@ export default class Survey extends React.Component {
                                                 </Col>
                                             </Row>
                                             <Row>
-                                                <Col xs={12} sm={6} md={6} lg={3}>
+                                                <Col xs={12} sm={6} md={6} lg={6}>
                                                     <FormGroup validationState={validator.errors.age ? 'error' : null}>
                                                         <label htmlFor="">Возраст, полных лет</label>
                                                         <FormControl
@@ -254,7 +254,7 @@ export default class Survey extends React.Component {
                                                             : null}
                                                     </FormGroup>
                                                 </Col>
-                                                <Col xs={12} sm={6} md={6} lg={3}>
+                                                <Col xs={12} sm={6} md={6} lg={6}>
                                                     <FormGroup validationState={validator.errors.city ? 'error' : null}>
                                                         <label htmlFor="">Город проживания:</label>
                                                         <FormControl

@@ -229,7 +229,7 @@ class Index extends React.Component {
                                         </div>
 
                                         <div className="col-md-12" style={{marginBottom:'15px'}}>
-                                            <a href="javascript:"
+                                            <a href="http://omnifarma.kiev.ua/shop/antidepressanty/smartsmile/"
                                                className="btn btn-block btn-lg btn-info">
                                                 Приобрести <br/>
                                                 СМАРТСМАЙЛ (5-НТР)
@@ -237,7 +237,7 @@ class Index extends React.Component {
                                         </div>
 
                                         <div className="col-md-12" style={{marginBottom:'15px'}}>
-                                            <a href={SurveyRouter.GET.info}
+                                            <a href="http://omnifarma.kiev.ua/products/smartsmajl/"
                                                className="btn btn-block btn-lg btn-default">
                                                 Узнать больше о<br/>
                                                 СМАРТСМАЙЛ (5-НТР)
