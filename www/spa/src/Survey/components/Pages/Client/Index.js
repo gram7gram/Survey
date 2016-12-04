@@ -32,7 +32,9 @@ class Index extends React.Component {
     }
 
     openSurvey() {
-        if (!this.props.Promocode.isValid) return;
+        const areRulesAccepted = this.props.ActiveSurvey.areRulesAccepted;
+        const canStart = this.props.Promocode.isValid && areRulesAccepted
+        if (!canStart) return;
 
         this.props.dispatch(fetchSurveyByPromocode(this.props.Promocode.value))
     }
@@ -54,26 +56,31 @@ class Index extends React.Component {
                 <div className="col-md-12">
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                            <h1 className="bold">СмартСмайл</h1>
+                            <h1 className="bold">помогает победить стресс</h1>
 
-                            <h2 className="bold">помогает победить стресс</h2>
+                            <h3>(ознакомительная программа)</h3>
 
-                            <h5>(ознакомительная программа)</h5>
+                            <br/>
 
                             <h4>Если Вы ищете для себя или своих близких</h4>
                             <h4>эффективное средство на натуральной основе</h4>
-                            <h4>с целью повышения стрессоустойчивости,
-                                снижения тревожности, снятия состояния угнетенности,
+                            <h4>с целью повышения стрессоустойчивости,<br/>
+                                снижения тревожности, <br/>
+                                снятия состояния угнетенности,<br/>
                                 устранения последствий стресса
                             </h4>
 
-                            <h3 className="bold">Вы можете воспользоваться представленным здесь предложением</h3>
+                            <h4 className="bold">Вы можете воспользоваться представленным здесь предложением</h4>
 
                             <table className="rules">
                                 <tbody>
                                 <tr>
                                     <td><h4 className="font-40">1</h4></td>
-                                    <td><h4>Ознакомиться с текстом Инструкции для добавки диетической «СмартСмайл»</h4>
+                                    <td><h4>Ознакомиться с текстом&nbsp;
+                                        <a href="javascript:"
+                                           className="black-link">Инструкции</a>
+                                        &nbsp;для добавки
+                                        диетической «СмартСмайл»</h4>
                                     </td>
                                 </tr>
                                 <tr>
@@ -89,7 +96,7 @@ class Index extends React.Component {
                                 <tr>
                                     <td><h4 className="font-40">3</h4></td>
                                     <td><h4>Оформить электронную заявку на получение
-                                        ознакомительного образца</h4>
+                                        БЕСПЛАТНОГО ознакомительного образца</h4>
                                     </td>
                                 </tr>
                                 <tr>
@@ -99,7 +106,7 @@ class Index extends React.Component {
                                 </tr>
                                 <tr>
                                     <td><h4 className="font-40">5</h4></td>
-                                    <td><h4>Получить 1 ознакомительный образец добавки диетической
+                                    <td><h4>Получить 1 БЕСПЛАТНЫЙ ознакомительный образец добавки диетической
                                         «СмартСмайл 20 капсул по 100 мг»</h4>
                                     </td>
                                 </tr>
@@ -118,14 +125,16 @@ class Index extends React.Component {
 
                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"
                              style={{maginTop: '30px'}}>
-                            <input
-                                type="checkbox"
-                                value={areRulesAccepted ? "on" : "off"}
-                                checked={areRulesAccepted}
-                                onChange={this.acceptRules}
-                                />
-                            Настоящим подтверждаю, что я ознакомился с&nbsp;
-                            <a href="javascript:" onClick={this.toggleRules}>Правилами ознакомительной Программы</a>.
+                            <h4>
+                                <input
+                                    type="checkbox"
+                                    value={areRulesAccepted ? "on" : "off"}
+                                    checked={areRulesAccepted}
+                                    onChange={this.acceptRules}
+                                    />
+                                &nbsp;Настоящим подтверждаю, что я ознакомился с&nbsp;
+                                <a href="javascript:" className="black-link" onClick={this.toggleRules}>Правилами ознакомительной Программы</a>.
+                            </h4>
                         </div>
                     </Row>
 
@@ -148,7 +157,7 @@ class Index extends React.Component {
                                          disabled={!canStart}>
 
                                     {isLoading ? <Spinner/>
-                                        : <span>Принять участие</span>}
+                                        : <span>Оформить заявку</span>}
 
                                 </a>
                             }
