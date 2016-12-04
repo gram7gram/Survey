@@ -30,6 +30,15 @@ const canShowRules = (previousState = false, action = {}) => {
     }
 }
 
+const canShowPersonalRules = (previousState = false, action = {}) => {
+    switch (action.type) {
+        case Action.TOGGLE_PERSONAL_RULES:
+            return action.payload
+        default:
+            return previousState;
+    }
+}
+
 const isDenied = (previousState = false, action = {}) => {
     switch (action.type) {
         case Action.UNAUTHORIZED_ERROR:
@@ -239,5 +248,6 @@ export default combineReducers({
     isLoading,
     currentQuestionIndex,
     canShowRules,
+    canShowPersonalRules,
     validator,
 })

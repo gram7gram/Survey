@@ -62,6 +62,9 @@ ul.pagination {
 .rules {
     max-height: 300px;
     overflow-y: auto;
+    text-align: left;
+    max-width: 500px;
+    margin: 20px auto;
 }
 
 .intl-tel-input {

@@ -8,6 +8,7 @@ import trans from '../../../translator'
 import promocodeChanged from '../../../actions/PromocodeChanged/Action'
 import fetchSurveyByPromocode from '../../../actions/FetchSurveyByPromocode/Action'
 import toggleRulesAction from '../../../actions/ToggleRules/Action'
+import togglePersonalRulesAction from '../../../actions/TogglePersonalRules/Action'
 import toggleAcceptRules from '../../../actions/ToggleAcceptRules/Action'
 
 class Index extends React.Component {
@@ -16,6 +17,7 @@ class Index extends React.Component {
         super();
         this.acceptRules = this.acceptRules.bind(this)
         this.toggleRules = this.toggleRules.bind(this)
+        this.togglePersonalRules = this.togglePersonalRules.bind(this)
         this.setPromocode = this.setPromocode.bind(this)
         this.openSurvey = this.openSurvey.bind(this)
     }
@@ -37,6 +39,10 @@ class Index extends React.Component {
         if (!canStart) return;
 
         this.props.dispatch(fetchSurveyByPromocode(this.props.Promocode.value))
+    }
+
+    togglePersonalRules() {
+        this.props.dispatch(togglePersonalRulesAction(!this.props.ActiveSurvey.canShowPersonalRules))
     }
 
     toggleRules() {
@@ -72,7 +78,7 @@ class Index extends React.Component {
 
                             <h4 className="bold">Вы можете воспользоваться представленным здесь предложением</h4>
 
-                            <table className="rules">
+                            <table className="rule">
                                 <tbody>
                                 <tr>
                                     <td><h4 className="font-40">1</h4></td>
@@ -91,6 +97,11 @@ class Index extends React.Component {
                                            onClick={this.toggleRules}>Правилами ознакомительной
                                             Программы</a>
                                     </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={2}>
+                                        {this.renderRules()}
                                     </td>
                                 </tr>
                                 <tr>
@@ -133,7 +144,9 @@ class Index extends React.Component {
                                     onChange={this.acceptRules}
                                     />
                                 &nbsp;Настоящим подтверждаю, что я ознакомился с&nbsp;
-                                <a href="javascript:" className="black-link" onClick={this.toggleRules}>Правилами ознакомительной Программы</a>.
+                                <a href="javascript:"
+                                   className="black-link"
+                                   onClick={this.togglePersonalRules}>Положением о конфиденциальности</a>.
                             </h4>
                         </div>
                     </Row>
@@ -141,7 +154,7 @@ class Index extends React.Component {
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                            {this.renderRules()}
+                            {this.renderPesonalRules()}
                         </div>
                     </div>
 
@@ -181,7 +194,7 @@ class Index extends React.Component {
                 <small>
                     <p>{trans.ru.surveyRuleHeader}</p>
                     <ul>
-                        {trans.ru.surveyRuleCondotions.map((condition, i) =>
+                        {trans.ru.surveyRuleConditions.map((condition, i) =>
                                 <li key={i}>{condition}</li>
                         )}
                     </ul>
@@ -196,6 +209,25 @@ class Index extends React.Component {
                     <a className="black-link"
                        href="mailto:omnifarma-kiev@mail.ua">omnifarma-kiev@mail.ua</a>.</strong>
                 </p>
+            </div>
+        </div>
+    }
+
+    renderPesonalRules() {
+        if (!this.props.ActiveSurvey.canShowPersonalRules) {
+            return null
+        }
+
+        return <div>
+            <div className="rules">
+                <small>
+                    <p>{trans.ru.surveyPersonalRuleHeader}</p>
+                    <ul>
+                        {trans.ru.surveyPersonalConditions.map((condition, i) =>
+                                <li key={i}>{condition}</li>
+                        )}
+                    </ul>
+                </small>
             </div>
         </div>
     }
