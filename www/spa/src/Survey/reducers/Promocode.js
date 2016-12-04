@@ -1,5 +1,4 @@
 "use strict";
-
 import * as Action from '../actions';
 import {combineReducers} from 'redux';
 
@@ -13,11 +12,15 @@ const value = (previousState = SurveyModel.promocode, action = {}) => {
     }
 }
 
-const isValid = (previousState = true, action = {}) => {
+const validatePromocode = (code) => {
+    return code && code.length === 6;
+}
+
+const isValid = (previousState = validatePromocode(SurveyModel.promocode), action = {}) => {
 
     switch (action.type) {
         case Action.PROMOCODE_CHANGED:
-            return action.payload.length === 6
+            return validatePromocode(action.payload)
         default:
             return previousState
     }

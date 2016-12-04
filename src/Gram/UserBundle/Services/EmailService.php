@@ -2,6 +2,7 @@
 
 namespace Gram\UserBundle\Services;
 
+use Gram\UserBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class EmailService
@@ -28,14 +29,13 @@ class EmailService
             ];
         }
 
-        $em = $this->container->get('doctrine')->getManager();
         $mailer = $this->container->get('mailer');
+        $um = $this->container->get('fos_user.user_manager');
 
         foreach ($recipients as $email) {
-            $user = $em->getRepository('GramUserBundle:User')->findOneBy([
-                'email' => $email
-            ]);
-            if (!$user || !$user->getIsEmailSending()) continue;
+            /** @var User $user */
+            $user = $um->findUserByEmail($email);
+            if (!$user || !$user->canSendEmail()) continue;
 
             $message = \Swift_Message::newInstance();
             $message->setFrom($config['from']);

@@ -66,3 +66,9 @@ jms_serializer:
             GramUserBundle:
                 namespace_prefix: "Gram\\UserBundle"
                 path: '@GramUserBundle/Resources/config/serializer'
+
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/migrations
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Migrations

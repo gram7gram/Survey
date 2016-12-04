@@ -13,6 +13,7 @@ use Gram\UserBundle\Entity\Address;
 use Gram\UserBundle\Entity\Contacts;
 use Gram\UserBundle\Entity\Individual;
 use Gram\UserBundle\Entity\User;
+use Gram\UserBundle\Services\EmailService;
 use JMS\Serializer\SerializationContext;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormInterface;
